@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "Post": {
+      "title": "게시글",
+      "description": "공지사항, 개통 후기, 이용 안내 등의 게시글",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "제목" },
+        "content": { "type": "string", "description": "내용 (Markdown)" },
+        "category": { "type": "string", "enum": ["notice", "review", "guide"], "description": "카테고리" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "작성일" },
+        "authorUid": { "type": "string", "description": "작성자 UID" },
+        "thumbnail": { "type": "string", "description": "썸네일 이미지 URL" }
+      },
+      "required": ["title", "content", "category", "createdAt", "authorUid"]
+    },
+    "Inquiry": {
+      "title": "상담 신청",
+      "description": "사용자가 남긴 상담 신청 내역",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "이름" },
+        "phone": { "type": "string", "description": "연락처" },
+        "message": { "type": "string", "description": "문의 내용" },
+        "status": { "type": "string", "enum": ["pending", "completed"], "description": "처리 상태" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "신청일" }
+      },
+      "required": ["name", "phone", "message", "status", "createdAt"]
+    },
+    "SiteConfig": {
+      "title": "사이트 설정",
+      "description": "CMS를 통해 관리되는 사이트의 전반적인 설정",
+      "type": "object",
+      "properties": {
+        "siteName": { "type": "string" },
+        "primaryColor": { "type": "string" },
+        "bannerText": { "type": "string" },
+        "serviceIntro": { "type": "string" },
+        "kakaoLink": { "type": "string" },
+        "blogLink": { "type": "string" },
+        "instagramLink": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "VisitorStats": {
+      "title": "방문자 통계",
+      "description": "일별 방문자 수 통계",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "description": "날짜 (YYYY-MM-DD)" },
+        "count": { "type": "number", "description": "방문자 수" }
+      }
+    }
+  },
+  "firestore": {
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "게시글 컬렉션"
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": "Inquiry",
+      "description": "상담 신청 컬렉션"
+    },
+    "/config/site": {
+      "schema": "SiteConfig",
+      "description": "사이트 설정 문서 (단일)"
+    },
+    "/stats/{date}": {
+      "schema": "VisitorStats",
+      "description": "일별 방문자 통계"
+    }
+  }
+}
