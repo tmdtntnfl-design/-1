@@ -61,9 +61,14 @@ export function Footer() {
               </div>
               <span className="text-lg font-bold text-gray-900">{config.siteName}</span>
             </div>
-            <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
+            <p className="text-gray-500 text-sm leading-relaxed max-w-sm mb-4">
               앤텔레콤 무조건선불폰은 신용불량, 미납자, 외국인 등 누구나 본인 명의로 즉시 개통이 가능한 프리미엄 선불폰 서비스입니다.
             </p>
+            <div className="text-xs text-gray-400 space-y-1">
+              <p>대표자명: 신승수</p>
+              <p>주소: 충북 청주시 청원구 648-1 6층 앤텔레콤</p>
+              <p>전화번호: 010-2580-6274</p>
+            </div>
           </div>
           
           <div>

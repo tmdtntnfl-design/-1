@@ -41,7 +41,10 @@
 service cloud.firestore {
   match /databases/{database}/documents {
     
+    // ===============================================================
     // Helper Functions
+    // ===============================================================
+    
     function isAuthenticated() {
       return request.auth != null;
     }
@@ -51,23 +54,44 @@ service cloud.firestore {
         (request.auth.token.email == "tmdtntnfl@gmail.com" && request.auth.token.email_verified == true);
     }
 
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
     function isValidPost(data) {
-      return data.title is string && data.title.size() > 0 && data.title.size() < 200 &&
-             data.content is string && data.content.size() > 0 && data.content.size() < 10000 &&
+      return hasOnlyAllowedFields(['title', 'content', 'category', 'createdAt', 'authorUid', 'thumbnail']) &&
+             data.title is string && data.title.size() > 0 && data.title.size() < 200 &&
+             data.content is string && data.content.size() > 0 && data.content.size() < 20000 &&
              data.category in ['notice', 'review', 'guide'] &&
              data.createdAt is timestamp &&
              data.authorUid == request.auth.uid;
     }
 
     function isValidInquiry(data) {
-      return data.name is string && data.name.size() > 0 && data.name.size() < 50 &&
-             data.phone is string && data.phone.size() > 0 && data.phone.size() < 20 &&
-             data.message is string && data.message.size() > 0 && data.message.size() < 2000 &&
+      return hasOnlyAllowedFields(['name', 'phone', 'message', 'status', 'createdAt']) &&
+             data.name is string && data.name.size() > 0 && data.name.size() < 50 &&
+             data.phone is string && data.phone.size() > 0 && data.phone.size() < 30 &&
+             data.message is string && data.message.size() > 0 && data.message.size() < 3000 &&
              data.status in ['pending', 'completed'] &&
              data.createdAt is timestamp;
     }
 
+    function isValidConfig(data) {
+      return data.siteName is string &&
+             data.kakaoLink is string;
+    }
+
+    // ===============================================================
     // Rules
+    // ===============================================================
     
     match /posts/{postId} {
       allow read: if true;
@@ -85,12 +109,18 @@ service cloud.firestore {
     
     match /config/site {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if isAdmin() && isValidConfig(request.resource.data);
     }
     
     match /stats/{date} {
       allow read: if isAdmin();
-      allow write: if true; // Allow anyone to increment stats (simplified for demo)
+      // Allow anyone to increment stats, but only by 1
+      allow create: if hasOnlyAllowedFields(['count', 'date']) && 
+                       request.resource.data.date == date &&
+                       request.resource.data.count == 1;
+      allow update: if hasOnlyAllowedFields(['count', 'date']) && 
+                       request.resource.data.date == date &&
+                       request.resource.data.count == resource.data.count + 1;
     }
   }
 }

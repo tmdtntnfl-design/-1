@@ -115,12 +115,19 @@ export default function HomePage() {
             className="w-full h-auto block"
             referrerPolicy="no-referrer"
           />
-          <img 
-            src="https://i.ibb.co/bjNBxbZG/040.png" 
-            alt="Guide 16" 
-            className="w-full h-auto block"
-            referrerPolicy="no-referrer"
-          />
+          <a 
+            href="http://pf.kakao.com/_eSGRn/chat" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="block w-full cursor-pointer"
+          >
+            <img 
+              src="https://i.ibb.co/bjNBxbZG/040.png" 
+              alt="Guide 16" 
+              className="w-full h-auto block"
+              referrerPolicy="no-referrer"
+            />
+          </a>
           <div className="w-full max-w-4xl mx-auto my-12 px-4">
             <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8 text-center">
               선불폰 개통방법
