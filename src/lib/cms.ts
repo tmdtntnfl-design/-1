@@ -65,7 +65,7 @@ export interface SiteConfig {
 }
 
 export const DEFAULT_CONFIG: SiteConfig = {
-  siteName: "앤텔레콤 무조건선불폰",
+  siteName: "앤텔레콤 무조건모바일",
   primaryColor: "#E02020",
   bannerText: "선불폰 개통방법",
   serviceIntro: "신용불량, 통신미납, 외국인\nKT,LG선불폰 누구나 본인명의 즉시개통!",
