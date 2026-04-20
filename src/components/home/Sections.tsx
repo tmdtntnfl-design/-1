@@ -69,13 +69,7 @@ export function Hero() {
 
             <div className="flex flex-col gap-4">
               <img 
-                src="https://i.ibb.co/Wv79KrPb/037.png" 
-                alt="Partner Info 2" 
-                className="w-full max-w-sm h-auto rounded-xl shadow-sm"
-                referrerPolicy="no-referrer"
-              />
-              <img 
-                src="https://i.ibb.co/35zdBk87/038.png" 
+                src="https://i.ibb.co/m5gt49Dq/038.png" 
                 alt="Partner Info 3" 
                 className="w-full max-w-sm h-auto rounded-xl shadow-sm"
                 referrerPolicy="no-referrer"

@@ -128,18 +128,17 @@ export default function HomePage() {
               referrerPolicy="no-referrer"
             />
           </a>
-          <div className="w-full max-w-4xl mx-auto my-12 px-4">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8 text-center">
+          <div className="w-full max-w-sm mx-auto my-12 px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8">
               선불폰 개통방법
             </h2>
-            <div className="overflow-hidden rounded-2xl shadow-2xl border-4 border-white">
-              <div className="relative pt-[56.25%] bg-gray-100">
+            <div className="overflow-hidden rounded-2xl shadow-2xl border-4 border-white mx-auto">
+              <div className="relative pt-[177.78%] bg-gray-100">
                 <iframe
-                  src="https://tv.naver.com/embed/97530270"
+                  src="https://www.youtube.com/embed/UzQoeN1NFlE"
                   className="absolute top-0 left-0 w-full h-full"
                   frameBorder="0"
-                  scrolling="no"
-                  allow="autoplay; fullscreen"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               </div>
