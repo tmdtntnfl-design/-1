@@ -74,6 +74,12 @@ export function Hero() {
                 className="w-full max-w-sm h-auto rounded-xl shadow-sm"
                 referrerPolicy="no-referrer"
               />
+              <img 
+                src="https://i.ibb.co/W497MHcr/Kakao-Talk-20250713-170004269.jpg" 
+                alt="Additional Info" 
+                className="w-full max-w-sm h-auto rounded-xl shadow-sm"
+                referrerPolicy="no-referrer"
+              />
             </div>
           </motion.div>
         </div>
